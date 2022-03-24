@@ -2,6 +2,9 @@ const cityUrl = "https://api.openweathermap.org/geo/1.0/direct?q=";
 const weatherUrl = "https://api.openweathermap.org/data/2.5/weather?";
 const apiKey = "c02496050420768f1e798238df0de32c";
 
+const cardsContainer = document.getElementById('climate-cards-section');
+const inputField = document.getElementById('city-name-input');
+
 const getCity = async (cityName) => {
     let response = await fetch(`${cityUrl}${cityName}&limit=1&appid=${apiKey}`);
     let data = await response.json();
@@ -101,59 +104,65 @@ const metersToKilometers = (speed) => {
 
 
 const card = async (cityName) => {
-    const weatherData = await getWeather(cityName);
+    getWeather(cityName)
+        .then(
 
-    const view = `
-        <div class="header">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-geo-alt-fill" viewBox="0 0 16 16">
-                <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/>
-            </svg>
+            function renderCard (weatherData) {
+                const view = `
+                    <div class="header">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-geo-alt-fill" viewBox="0 0 16 16">
+                            <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/>
+                        </svg>
 
-            <div class="city-name">${weatherData[5]}</div>
+                        <div class="city-name">${weatherData[5]}</div>
 
-            <div class="country">
-                ${weatherData[0]}
-            </div>
-        </div>
+                        <div class="country">
+                            ${weatherData[0]}
+                        </div>
+                    </div>
 
-        <div class="temp-container">
-            ${kelvinToCelsius(weatherData[4])}°C
-        </div>
+                    <div class="temp-container">
+                        ${kelvinToCelsius(weatherData[4])}°C
+                    </div>
 
-        <div class="weather-content">
-            <div class="info-box">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-droplet-fill" viewBox="0 0 16 16">
-                    <path d="M8 16a6 6 0 0 0 6-6c0-1.655-1.122-2.904-2.432-4.362C10.254 4.176 8.75 2.503 8 0c0 0-6 5.686-6 10a6 6 0 0 0 6 6ZM6.646 4.646l.708.708c-.29.29-1.128 1.311-1.907 2.87l-.894-.448c.82-1.641 1.717-2.753 2.093-3.13Z"/>
-                </svg>
-                <p>${weatherData[2]}%</p>
-            </div>
+                    <div class="weather-content">
+                        <div class="info-box">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-droplet-fill" viewBox="0 0 16 16">
+                                <path d="M8 16a6 6 0 0 0 6-6c0-1.655-1.122-2.904-2.432-4.362C10.254 4.176 8.75 2.503 8 0c0 0-6 5.686-6 10a6 6 0 0 0 6 6ZM6.646 4.646l.708.708c-.29.29-1.128 1.311-1.907 2.87l-.894-.448c.82-1.641 1.717-2.753 2.093-3.13Z"/>
+                            </svg>
+                            <p>${weatherData[2]}%</p>
+                        </div>
 
-            <div class="info-box">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-wind" viewBox="0 0 16 16">
-                    <path d="M12.5 2A2.5 2.5 0 0 0 10 4.5a.5.5 0 0 1-1 0A3.5 3.5 0 1 1 12.5 8H.5a.5.5 0 0 1 0-1h12a2.5 2.5 0 0 0 0-5zm-7 1a1 1 0 0 0-1 1 .5.5 0 0 1-1 0 2 2 0 1 1 2 2h-5a.5.5 0 0 1 0-1h5a1 1 0 0 0 0-2zM0 9.5A.5.5 0 0 1 .5 9h10.042a3 3 0 1 1-3 3 .5.5 0 0 1 1 0 2 2 0 1 0 2-2H.5a.5.5 0 0 1-.5-.5z"/>
-                </svg>
-                <p>${metersToKilometers(weatherData[3])} km/hr</p>
-            </div>
-        </div>
-    `;
+                        <div class="info-box">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-wind" viewBox="0 0 16 16">
+                                <path d="M12.5 2A2.5 2.5 0 0 0 10 4.5a.5.5 0 0 1-1 0A3.5 3.5 0 1 1 12.5 8H.5a.5.5 0 0 1 0-1h12a2.5 2.5 0 0 0 0-5zm-7 1a1 1 0 0 0-1 1 .5.5 0 0 1-1 0 2 2 0 1 1 2 2h-5a.5.5 0 0 1 0-1h5a1 1 0 0 0 0-2zM0 9.5A.5.5 0 0 1 .5 9h10.042a3 3 0 1 1-3 3 .5.5 0 0 1 1 0 2 2 0 1 0 2-2H.5a.5.5 0 0 1-.5-.5z"/>
+                            </svg>
+                            <p>${metersToKilometers(weatherData[3])} km/hr</p>
+                        </div>
+                    </div>
+                `;
 
-    const cardsContainer = document.getElementById('climate-cards-section');
-    const cardContainer = document.createElement('div');
-    const closeButton = closeCardButton(weatherData[6]);
-    const cloudiness = cloudinessContainer( weatherData[1] );
-    
-    closeButton.addEventListener("click",closeCard);
+                const cardContainer = document.createElement('div');
+                const closeButton = closeCardButton(weatherData[6]);
+                const cloudiness = cloudinessContainer( weatherData[1] );
+            
+                closeButton.addEventListener("click",closeCard);
 
-    cardContainer.className = "card";
-    cardContainer.innerHTML = view;
-    cardContainer.insertBefore(closeButton, cardContainer.children[0]);
-    cardContainer.insertBefore( cloudiness, cardContainer.children[2] );
-    cardsContainer.append(cardContainer);
-
+                cardContainer.className = "card";
+                cardContainer.innerHTML = view;
+                cardContainer.insertBefore(closeButton, cardContainer.children[0]);
+                cardContainer.insertBefore( cloudiness, cardContainer.children[2] );
+                cardsContainer.appendChild(cardContainer);
+            }
+        )
+        .catch(
+            function notFound () {
+                window.alert("City not found, check your spelling");
+            }
+        )
 }
 
 const closeCard = (event) => {
-    const cardsContainer = document.getElementById('climate-cards-section');
     const div = event.target.parentNode;
     const card = div.parentNode;
     cardsContainer.removeChild(card);

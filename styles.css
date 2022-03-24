@@ -15,12 +15,22 @@ header {
     padding: 16px;
     display: flex;
     flex-direction: row;
+    align-items: center;
     justify-content: space-between;
 }
 
 header .page-title {
-    font-size: 35px;
+    font-size: 30px;
     font-weight: 600;
+}
+
+header .contact-info a {
+    text-decoration: none;
+}
+
+header .contact-info a svg {
+    color: white;
+    margin: 4px;
 }
 
 .search-bar-container {
@@ -67,7 +77,10 @@ header .page-title {
     font-weight: 200;
 }
 
-
+.input-field .not-found::placeholder {
+    color: red;
+    font-weight: 200;
+}
 
 .climate-cards {
     margin-top: 24px;
