@@ -1,4 +1,4 @@
-import card  from "./src/components/card";
+import card  from "./src/components/card.js";
 
 const searchButton = document.getElementById('search-button');
 
