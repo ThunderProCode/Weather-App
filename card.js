@@ -15,7 +15,7 @@ const getWeather = async (cityName) => {
     let response = await fetch(url);
     let data = await response.json();
 
-    return [data.sys.country,data.clouds.all,data.main.humidity,data.wind.speed, data.main.temp, data.name];
+    return [data.sys.country,data.clouds.all,data.main.humidity,data.wind.speed, data.main.temp, data.name,data.sys.id];
 }
 
 const cloudinessContainer = (cloudiness) => {
@@ -77,9 +77,26 @@ const cloudinessContainer = (cloudiness) => {
     return cloudinessContainer;
 }
 
+const closeCardButton = (id) => {
+    const button = document.createElement('div');
+    button.className = "close-button";
+    button.onclick = "closeCard()";
+    button.innerHTML = `
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle close-button-svg" viewBox="0 0 16 16">
+            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+            <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+         </svg>
+    `;
+    return button;
+}
+
 const kelvinToCelsius = (tempInKelvin) => {
     const kelvin = 273.15;
     return Math.floor(tempInKelvin - kelvin);
+}
+
+const metersToKilometers = (speed) => {
+    return Math.floor(speed * 3.6);
 }
 
 
@@ -115,19 +132,31 @@ const card = async (cityName) => {
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-wind" viewBox="0 0 16 16">
                     <path d="M12.5 2A2.5 2.5 0 0 0 10 4.5a.5.5 0 0 1-1 0A3.5 3.5 0 1 1 12.5 8H.5a.5.5 0 0 1 0-1h12a2.5 2.5 0 0 0 0-5zm-7 1a1 1 0 0 0-1 1 .5.5 0 0 1-1 0 2 2 0 1 1 2 2h-5a.5.5 0 0 1 0-1h5a1 1 0 0 0 0-2zM0 9.5A.5.5 0 0 1 .5 9h10.042a3 3 0 1 1-3 3 .5.5 0 0 1 1 0 2 2 0 1 0 2-2H.5a.5.5 0 0 1-.5-.5z"/>
                 </svg>
-                <p>${weatherData[3]} m/s</p>
+                <p>${metersToKilometers(weatherData[3])} km/hr</p>
             </div>
         </div>
     `;
 
     const cardsContainer = document.getElementById('climate-cards-section');
     const cardContainer = document.createElement('div');
+    const closeButton = closeCardButton(weatherData[6]);
     const cloudiness = cloudinessContainer( weatherData[1] );
+    
+    closeButton.addEventListener("click",closeCard);
 
     cardContainer.className = "card";
     cardContainer.innerHTML = view;
+    cardContainer.insertBefore(closeButton, cardContainer.children[0]);
     cardContainer.insertBefore( cloudiness, cardContainer.children[2] );
     cardsContainer.append(cardContainer);
+
+}
+
+const closeCard = (event) => {
+    const cardsContainer = document.getElementById('climate-cards-section');
+    const div = event.target.parentNode;
+    const card = div.parentNode;
+    cardsContainer.removeChild(card);
 }
 
 export default card;

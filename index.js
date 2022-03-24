@@ -4,7 +4,7 @@ const searchButton = document.getElementById('search-button');
 
 const search = () => {
     const cityName = document.getElementById('city-name-input').value;
-    card(cityName);
+    const newCard = card(cityName);
 }
 
 searchButton.addEventListener("click",search);
