@@ -1,4 +1,4 @@
-const cityUrl = "http://api.openweathermap.org/geo/1.0/direct?q=";
+const cityUrl = "https://api.openweathermap.org/geo/1.0/direct?q=";
 const weatherUrl = "https://api.openweathermap.org/data/2.5/weather?";
 const apiKey = "c02496050420768f1e798238df0de32c";
 
