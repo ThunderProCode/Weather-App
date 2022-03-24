@@ -1,0 +1,22 @@
+{
+  "name": "weather-app",
+  "version": "1.0.0",
+  "description": "Simple Weather App",
+  "main": "index.js",
+  "scripts": {
+    "start": "parcel index.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ThunderProCode/Weather-app.git"
+  },
+  "author": "ThunderKnight",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ThunderProCode/Weather-app/issues"
+  },
+  "homepage": "https://github.com/ThunderProCode/Weather-app#readme",
+  "devDependencies": {
+    "parcel": "^2.4.0"
+  }
+}

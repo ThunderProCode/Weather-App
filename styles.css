@@ -1,0 +1,158 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap');
+
+* {
+    font-family: 'Open Sans', sans-serif;
+}
+
+body {
+    background: #1f253d;
+    color: white;
+
+}
+
+header {
+    background: #394264;
+    padding: 16px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+header .page-title {
+    font-size: 35px;
+    font-weight: 600;
+}
+
+.search-bar-container {
+    margin-top: 36px;
+    display: flex;
+    justify-content: center;
+}
+
+.search-bar {
+    width: 300px;
+    background: #50597b;
+    padding: 12px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    box-shadow: -1px 1px 24px 1px rgba(0,0,0,0.46);
+    -webkit-box-shadow: -1px 1px 24px 1px rgba(0,0,0,0.46);
+    -moz-box-shadow: -1px 1px 24px 1px rgba(0,0,0,0.46);
+}
+
+.input-field {
+    width: 100%;
+    background: #50597b;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    padding: 4px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.input-field:focus {
+    outline: none;
+} 
+
+.search-bar svg:hover {
+    color: gray;
+}
+
+.input-field::placeholder {
+    color: white;
+    font-weight: 200;
+}
+
+
+
+.climate-cards {
+    margin-top: 24px;
+    display: flex;
+   justify-content: center;
+}
+
+.card {
+    background: #394264;
+    margin: 16px;
+    width: 300px;
+    /* padding: 12px; */
+    border-radius: 8px;
+
+
+    box-shadow: -1px 1px 24px 1px rgba(0,0,0,0.46);
+    -webkit-box-shadow: -1px 1px 24px 1px rgba(0,0,0,0.46);
+    -moz-box-shadow: -1px 1px 24px 1px rgba(0,0,0,0.46);
+
+}
+
+.card .header {
+    margin-top: 16px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.card .header .city-name {
+    margin-left: 6px;
+    font-size: 46px;
+    font-weight: 600;
+}
+
+.card .header .country {
+    width: 10%;
+    margin-left: 4px;
+    font-size: 14px;
+    background: #11a8ab;
+    align-self: flex-start;
+    border-radius: 8px;
+    padding: 4px;
+    font-weight: 600;
+}
+
+.card .temp-container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 80px;
+    font-weight: 800;
+}
+
+.card .weather-content {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    justify-content: center;
+    margin-bottom: 16px;
+}
+.card .weather-content .info-box{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    padding-top: 12px;
+    padding-left: 12px;
+    padding-right: 12px;
+    padding-bottom: 0;
+
+    margin-bottom: 0;
+}
+
+.card .weather-content .info-box p {
+    margin-top: 8px;
+    margin-bottom: 0;
+}
+@media ( max-width: 640px) {
+    .climate-cards {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+}
