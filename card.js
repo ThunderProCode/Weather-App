@@ -3,8 +3,6 @@ const weatherUrl = "https://api.openweathermap.org/data/2.5/weather?";
 const apiKey = "c02496050420768f1e798238df0de32c";
 
 const cardsContainer = document.getElementById('climate-cards-section');
-const inputField = document.getElementById('city-name-input');
-
 const getCity = async (cityName) => {
     let response = await fetch(`${cityUrl}${cityName}&limit=1&appid=${apiKey}`);
     let data = await response.json();
