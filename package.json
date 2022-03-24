@@ -18,5 +18,6 @@
   "homepage": "https://github.com/ThunderProCode/Weather-app#readme",
   "devDependencies": {
     "parcel": "^2.4.0"
-  }
+  },
+  "dependencies": {}
 }
