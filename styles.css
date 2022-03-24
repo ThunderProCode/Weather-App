@@ -72,10 +72,12 @@ header .page-title {
 .climate-cards {
     margin-top: 24px;
     display: flex;
+    flex-wrap: wrap;
    justify-content: center;
 }
 
 .card {
+    flex: 0 0 25%;
     background: #394264;
     margin: 16px;
     width: 300px;
@@ -161,6 +163,14 @@ header .page-title {
     margin-bottom: 0;
     margin-left: 8px;
 }
+
+
+@media (max-width: 1010px){
+    .card {
+        flex: 0 0 50%;
+    }
+}
+
 @media ( max-width: 640px) {
     .climate-cards {
         flex-direction: column;
