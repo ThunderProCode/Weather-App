@@ -15,7 +15,7 @@
   "bugs": {
     "url": "https://github.com/ThunderProCode/Weather-app/issues"
   },
-  "homepage": "https://github.com/ThunderProCode/Weather-app#readme",
+  "homepage": "./index.html",
   "devDependencies": {
     "parcel": "^2.4.0"
   },
